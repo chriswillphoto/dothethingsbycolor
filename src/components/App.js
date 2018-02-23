@@ -1,5 +1,6 @@
 import React, { PureComponent as Component } from "react";
 import Priority from './Priority'
+import AddPriority from './AddPriority'
 
 
 const compare = function(a, b) {
@@ -34,6 +35,7 @@ class App extends Component {
     return(
       <div className="priorities-container" >
         {this.listPriorities()}
+        <AddPriority />
       </div>
     )
   }
