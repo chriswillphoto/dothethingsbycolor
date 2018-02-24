@@ -31,11 +31,17 @@ class App extends Component {
     } )
   }
 
+  addToPriorites(p) {
+    const newListOfPriorites = [...this.state.items, p]
+    console.log(newListOfPriorites)
+    this.setState({items: newListOfPriorites})
+  }
+
   render() {
     return(
       <div className="priorities-container" >
         {this.listPriorities()}
-        <AddPriority />
+        <AddPriority addToPriorities={(p) => this.addToPriorites(p)}/>
       </div>
     )
   }

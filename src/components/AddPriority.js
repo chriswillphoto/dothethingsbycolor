@@ -3,13 +3,12 @@ import React from "react";
 const AddPriority = props => {
   const conn = e => {
     e.preventDefault();
-    console.log(e.target.elements[0].value);
-    console.log(e.target.elements[1].value);
     const newPriority = {
       name: e.target.elements[0].value,
-      level: e.target.elements[1].value
+      level: parseInt(e.target.elements[1].value, 10)
     };
     props.addToPriorities(newPriority);
+    e.target.elements[0].value = ""
   };
 
   return (
