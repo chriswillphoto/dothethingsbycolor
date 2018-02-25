@@ -1,9 +1,18 @@
 import React from 'react'
 
+
+const styles = {
+  1: "level-one",
+  2: "level-two",
+  3: "level-three",
+  4: "level-four",
+  5: "level-five"
+}
+
 const Priority = (props) => {
   return(
-    <div className="priority-container">
-      <h1>This will be a thing soon</h1>
+    <div className={"priority-container " + styles[props.priority.level] }>
+      <h1>{props.priority.name}</h1>
     </div>
   )
 }
