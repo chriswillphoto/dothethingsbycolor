@@ -1,0 +1,28 @@
+.priority-container {
+  width: 100vw;
+}
+
+.level-five {
+  height: 100vh;
+  background-color: #FF5767;
+}
+
+.level-four {
+  height: 80vh;
+  background-color: #FF866E;
+}
+
+.level-three {
+  height: 60vh;
+  background-color: #FFD58D;
+}
+
+.level-two {
+  height: 40vh;
+  background-color: #FFE68E
+}
+
+.level-one {
+  height: 20vh;
+  background-color: #A0FF8D
+}
