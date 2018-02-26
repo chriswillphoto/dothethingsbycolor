@@ -13,7 +13,7 @@ const styles = {
 const Priority = (props) => {
   return(
     <div className={"priority-container " + styles[props.priority.level] }>
-      <h1>{props.priority.name}</h1>
+      <h1 className="priority-heading">{props.priority.name}</h1>
     </div>
   )
 }

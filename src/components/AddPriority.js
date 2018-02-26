@@ -1,4 +1,5 @@
 import React from "react";
+import './AddPriority.css'
 
 const AddPriority = props => {
   const conn = e => {

@@ -1,5 +1,16 @@
 .priority-container {
   width: 100vw;
+  border: 1px solid slategrey;
+  color: white;
+  align-items: center;
+  position: relative;
+}
+
+.priority-heading {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .level-five {
