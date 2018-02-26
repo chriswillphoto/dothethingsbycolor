@@ -1,5 +1,5 @@
 import React, { PureComponent as Component } from "react";
-import TransitionGroup from "react-transition-group/TransitionGroup";
+import {CSSTransitionGroup} from "react-transition-group";
 import Priority from "./Priority";
 import AddPriority from "./AddPriority";
 
