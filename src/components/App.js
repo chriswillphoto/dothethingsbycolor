@@ -2,8 +2,10 @@ import React, { PureComponent as Component } from "react";
 import { CSSTransitionGroup } from "react-transition-group";
 import Priority from "./Priority";
 import AddPriority from "./AddPriority";
+import Detail from './Detail'
 import ShowFormButton from "./ShowFormButton";
 import uniqid from "uniqid";
+
 
 const compare = function(a, b) {
   const levelA = a.level;
@@ -24,7 +26,8 @@ class App extends Component {
 
     this.state = {
       items: [{ name: "one", level: 4 }, { name: "two", level: 5 }],
-      showForm: false
+      showForm: false,
+      showDetail: false
     };
   }
 
@@ -44,6 +47,7 @@ class App extends Component {
     return (
       <div className="priorities-container">
         {this.listPriorities()}
+        {this.state.showDetail && <Detail priority={this.state.selected} />}
         {this.state.showForm ? (
           <AddPriority addToPriorities={p => this.addToPriorites(p)} />
         ) : (
