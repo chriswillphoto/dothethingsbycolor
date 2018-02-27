@@ -1,12 +1,8 @@
 import React from "react";
+import "./ShowFormButton.css";
 
-const ShowFormButton = () => {
-  return (
-    <button className="show-form">
-      <h4>+</h4>
-    </button>
-  );
+const ShowFormButton = (props) => {
+  return <button className="show-form" onClick={props.showForm}>+</button>;
 };
 
-
-export default ShowFormButton
+export default ShowFormButton;

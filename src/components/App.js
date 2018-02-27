@@ -3,6 +3,7 @@ import { CSSTransitionGroup } from "react-transition-group";
 import Priority from "./Priority";
 import AddPriority from "./AddPriority";
 import ShowFormButton from "./ShowFormButton";
+import uniqid from "uniqid";
 
 const compare = function(a, b) {
   const levelA = a.level;
@@ -29,14 +30,14 @@ class App extends Component {
 
   listPriorities() {
     return this.state.items.sort(compare).map(priority => {
-      return <Priority priority={priority} />;
+      return <Priority priority={priority} key={uniqid()} />;
     });
   }
 
   addToPriorites(p) {
     const newListOfPriorites = [...this.state.items, p];
     console.log(newListOfPriorites);
-    this.setState({ items: newListOfPriorites });
+    this.setState({ items: newListOfPriorites, showForm: false });
   }
 
   render() {
@@ -46,7 +47,7 @@ class App extends Component {
         {this.state.showForm ? (
           <AddPriority addToPriorities={p => this.addToPriorites(p)} />
         ) : (
-          <ShowFormButton />
+          <ShowFormButton showForm={() => this.setState({ showForm: true })} />
         )}
       </div>
     );
