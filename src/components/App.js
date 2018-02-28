@@ -33,14 +33,19 @@ class App extends Component {
     this.state = {
       items: [{ name: "one", level: 4 }, { name: "two", level: 5 }],
       showForm: false,
-      showDetail: false
+      showDetail: false,
+      selected: null
     };
   }
 
   listPriorities() {
     return this.state.items.sort(compare).map(priority => {
-      return <Priority priority={priority} key={uniqid()} />;
+      return <Priority priority={priority} key={uniqid()} openDetail={(e, p) => this.openDetail(p)}/>;
     });
+  }
+
+  openDetail(priority) {
+    this.setState({ showDetail: true, selected: priority})
   }
 
   addToPriorites(p) {

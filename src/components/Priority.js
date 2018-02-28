@@ -12,7 +12,7 @@ const styles = {
 
 const Priority = (props) => {
   return(
-    <div className={"priority-container " + styles[props.priority.level] }>
+    <div className={"priority-container " + styles[props.priority.level] } onClick={(e) => props.openDetail(e, props.priority)}>
       <h1 className="priority-heading">{props.priority.name}</h1>
     </div>
   )
