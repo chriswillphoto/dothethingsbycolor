@@ -1,11 +1,20 @@
 import React, { PureComponent as Component } from "react";
-import { CSSTransitionGroup } from "react-transition-group";
+import { CSSTransition } from "react-transition-group";
 import Priority from "./Priority";
 import AddPriority from "./AddPriority";
 import Detail from './Detail'
 import ShowFormButton from "./ShowFormButton";
 import uniqid from "uniqid";
-
+import './App.css'
+const Fade = ({ children, ...props }) => (
+  <CSSTransition
+    {...props}
+    timeout={1000}
+    classNames="fade"
+  >
+    {children}
+  </CSSTransition>
+);
 
 const compare = function(a, b) {
   const levelA = a.level;
@@ -48,11 +57,13 @@ class App extends Component {
       <div className="priorities-container">
         {this.listPriorities()}
         {this.state.showDetail && <Detail priority={this.state.selected} />}
+        <Fade in={this.state.showForm}>
         {this.state.showForm ? (
-          <AddPriority addToPriorities={p => this.addToPriorites(p)} />
+          <AddPriority addToPriorities={p => this.addToPriorites(p)} key={uniqid()}/>
         ) : (
-          <ShowFormButton showForm={() => this.setState({ showForm: true })} />
+          <ShowFormButton showForm={() => this.setState({ showForm: true })} key={uniqid()}/>
         )}
+        </Fade>
       </div>
     );
   }
