@@ -19,6 +19,7 @@ const AddPriority = props => {
         conn(e);
       }}
     >
+      <button type="button" className="hide-form" onClick={props.hideForm}>X</button>
       <input className="priority-name" placeholder="Name of Priority" />
       <select>
         <option value={5}>5 (Top Priority)</option>

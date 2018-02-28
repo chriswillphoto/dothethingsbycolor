@@ -6,6 +6,8 @@ import Detail from './Detail'
 import ShowFormButton from "./ShowFormButton";
 import uniqid from "uniqid";
 import './App.css'
+
+
 const Fade = ({ children, ...props }) => (
   <CSSTransition
     {...props}
@@ -59,7 +61,7 @@ class App extends Component {
         {this.state.showDetail && <Detail priority={this.state.selected} />}
         <Fade in={this.state.showForm}>
         {this.state.showForm ? (
-          <AddPriority addToPriorities={p => this.addToPriorites(p)} key={uniqid()}/>
+          <AddPriority addToPriorities={p => this.addToPriorites(p)} key={uniqid()} hideForm={() => this.setState({ showForm: false})}/>
         ) : (
           <ShowFormButton showForm={() => this.setState({ showForm: true })} key={uniqid()}/>
         )}
