@@ -2,12 +2,13 @@ import React from "react";
 import './AddPriority.css'
 
 const AddPriority = props => {
-  const conn = e => {
+  const addNewPriority = e => {
     e.preventDefault();
     const newPriority = {
       name: e.target.elements[0].value,
       level: parseInt(e.target.elements[1].value, 10)
     };
+    console.log(e.target.elements)
     props.addToPriorities(newPriority);
     e.target.elements[0].value = ""
   };
@@ -16,10 +17,9 @@ const AddPriority = props => {
     <form
       className="add-form"
       onSubmit={e => {
-        conn(e);
+        addNewPriority(e);
       }}
     >
-      <button type="button" className="hide-form" onClick={props.hideForm}>X</button>
       <input className="priority-name" placeholder="Name of Priority" />
       <select>
         <option value={5}>5 (Top Priority)</option>
@@ -28,7 +28,8 @@ const AddPriority = props => {
         <option value={2}>2 (Can be put of if need be)</option>
         <option value={1}>1 (Only done if you can find the time)</option>
       </select>
-      <button>Add</button>
+      <button className="add-button" type="submit">Add</button>
+      <button type="button" className="hide-form" onClick={props.hideForm}>X</button>
     </form>
   );
 };
