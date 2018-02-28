@@ -1,9 +1,17 @@
 import React from 'react'
 
-const Detail = (props) => {
+const divstyle = {
+  position: "fixed",
+  height: "100%",
+  width: "40%",
+  backgroundColor: "skyblue",
+  top: "0"
+}
+
+const Detail = ({priority}) => {
   return(
-    <div className="detail-modal">
-      <h1>modal coming soon</h1>
+    <div style={divstyle} className="detail-modal">
+      <h1>{priority.name}</h1>
     </div>
   )
 } 
