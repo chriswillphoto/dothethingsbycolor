@@ -2,18 +2,13 @@ import React, { PureComponent as Component } from "react";
 import { CSSTransition } from "react-transition-group";
 import Priority from "./Priority";
 import AddPriority from "./AddPriority";
-import Detail from './Detail'
+import Detail from "./Detail";
 import ShowFormButton from "./ShowFormButton";
 import uniqid from "uniqid";
-import './App.css'
-
+import "./App.css";
 
 const Fade = ({ children, ...props }) => (
-  <CSSTransition
-    {...props}
-    timeout={1000}
-    classNames="fade"
-  >
+  <CSSTransition {...props} timeout={1000} classNames="fade">
     {children}
   </CSSTransition>
 );
@@ -60,11 +55,15 @@ class App extends Component {
         {this.listPriorities()}
         {this.state.showDetail && <Detail priority={this.state.selected} />}
         <Fade in={this.state.showForm}>
-        {this.state.showForm ? (
-          <AddPriority addToPriorities={p => this.addToPriorites(p)} key={uniqid()} hideForm={() => this.setState({ showForm: false})}/>
-        ) : (
-          <ShowFormButton showForm={() => this.setState({ showForm: true })} key={uniqid()}/>
-        )}
+          {this.state.showForm ? (
+            <AddPriority
+              addToPriorities={p => this.addToPriorites(p)}
+              key={uniqid()}
+              hideForm={() => this.setState({ showForm: false })}
+            />
+          ) : (
+            <ShowFormButton showForm={() => this.setState({ showForm: true })} key={uniqid()} />
+          )}
         </Fade>
       </div>
     );
