@@ -38,6 +38,17 @@ class App extends Component {
     };
   }
 
+  saveToStorage(items) {
+    localStorage.setItem('dobycolorlist', JSON.stringify(items))
+  }
+
+  fetchFromStorage() {
+    const itemList = localStorage.getItem('dobycolorlist')
+    const parsed = JSON.parse(itemList)
+
+    this.setState({items: parsed})
+  }
+
   listPriorities() {
     return this.state.items.sort(compare).map(priority => {
       return <Priority priority={priority} key={uniqid()} openDetail={(e, p) => this.openDetail(p)}/>;
@@ -51,7 +62,11 @@ class App extends Component {
   addToPriorites(p) {
     const newListOfPriorites = [...this.state.items, p];
     console.log(newListOfPriorites);
-    this.setState({ items: newListOfPriorites, showForm: false });
+    this.setState({ items: newListOfPriorites, showForm: false }, this.saveToStorage(newListOfPriorites));
+  }
+
+  componentDidMount(){
+    this.fetchFromStorage()
   }
 
   render() {
