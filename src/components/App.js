@@ -61,7 +61,7 @@ class App extends Component {
 
   addToPriorites(p) {
     const newListOfPriorites = [...this.state.items, p];
-    console.log(newListOfPriorites);
+    // console.log(newListOfPriorites);
     this.setState({ items: newListOfPriorites, showForm: false }, this.saveToStorage(newListOfPriorites));
   }
 
