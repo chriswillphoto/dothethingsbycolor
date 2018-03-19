@@ -8,10 +8,10 @@ const divstyle = {
   top: "0"
 }
 
-const Detail = ({priority}) => {
+const Detail = ({priority, closeModal}) => {
   return(
     <div style={divstyle} className="detail-modal">
-      <button class="close-detail">X</button>
+      <button class="close-detail" onClick={() => {closeModal()}}>X</button>
       <h1>{priority.name}</h1>
     </div>
   )

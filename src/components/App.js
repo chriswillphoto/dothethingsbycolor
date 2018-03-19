@@ -39,47 +39,53 @@ class App extends Component {
   }
 
   saveToStorage(items) {
-    localStorage.setItem('dobycolorlist', JSON.stringify(items))
+    localStorage.setItem("dobycolorlist", JSON.stringify(items));
   }
 
   fetchFromStorage() {
-    if(localStorage.getItem('dobycolorlist')){
-      const itemList = localStorage.getItem('dobycolorlist')
-      const parsed = JSON.parse(itemList)
-  
-      this.setState({items: parsed})
+    if (localStorage.getItem("dobycolorlist")) {
+      const itemList = localStorage.getItem("dobycolorlist");
+      const parsed = JSON.parse(itemList);
+
+      this.setState({ items: parsed });
     }
-    
   }
 
   listPriorities() {
-    debugger
     return this.state.items.sort(compare).map(priority => {
-      return <Priority priority={priority} key={uniqid()} openDetail={(e, p) => this.openDetail(p)}/>;
+      return (
+        <Priority priority={priority} key={uniqid()} openDetail={(e, p) => this.openDetail(p)} />
+      );
     });
   }
 
   openDetail(priority) {
-    this.setState({ showDetail: true, selected: priority})
+    this.setState({ showDetail: true, selected: priority });
   }
 
   addToPriorites(p) {
     const newListOfPriorites = [...this.state.items, p];
     // console.log(newListOfPriorites);
-    this.setState({ items: newListOfPriorites, showForm: false }, this.saveToStorage(newListOfPriorites));
+    this.setState(
+      { items: newListOfPriorites, showForm: false },
+      this.saveToStorage(newListOfPriorites)
+    );
   }
 
-  componentWillMount(){
-
-    this.fetchFromStorage()
-    console.log(this.state.items.sort())
+  componentWillMount() {
+    this.fetchFromStorage();
   }
 
   render() {
     return (
       <div className="priorities-container">
         {this.listPriorities()}
-        {this.state.showDetail && <Detail priority={this.state.selected} />}
+        {this.state.showDetail && (
+          <Detail
+            priority={this.state.selected}
+            closeModal={() => this.setState({ showDetail: false, selected: null })}
+          />
+        )}
         <TransitionGroup>
           {this.state.showForm ? (
             <Fade key={uniqid()}>
