@@ -43,13 +43,17 @@ class App extends Component {
   }
 
   fetchFromStorage() {
-    const itemList = localStorage.getItem('dobycolorlist')
-    const parsed = JSON.parse(itemList)
-
-    this.setState({items: parsed})
+    if(localStorage.getItem('dobycolorlist')){
+      const itemList = localStorage.getItem('dobycolorlist')
+      const parsed = JSON.parse(itemList)
+  
+      this.setState({items: parsed})
+    }
+    
   }
 
   listPriorities() {
+    debugger
     return this.state.items.sort(compare).map(priority => {
       return <Priority priority={priority} key={uniqid()} openDetail={(e, p) => this.openDetail(p)}/>;
     });
@@ -65,8 +69,10 @@ class App extends Component {
     this.setState({ items: newListOfPriorites, showForm: false }, this.saveToStorage(newListOfPriorites));
   }
 
-  componentDidMount(){
+  componentWillMount(){
+
     this.fetchFromStorage()
+    console.log(this.state.items.sort())
   }
 
   render() {
