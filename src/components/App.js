@@ -31,10 +31,13 @@ class App extends Component {
     super(props);
 
     this.state = {
-      items: [{ name: "one", level: 4 }, { name: "two", level: 5 }],
+      items: {
+
+      },
       showForm: false,
       showDetail: false,
-      selected: null
+      selected: null,
+      editDetail: false
     };
   }
 
@@ -52,9 +55,9 @@ class App extends Component {
   }
 
   listPriorities() {
-    return this.state.items.sort(compare).map(priority => {
+    return Object.keys(this.state.items).map((key) => { return this.state.items[key]  }).sort(compare).map(priority => {
       return (
-        <Priority priority={priority} key={uniqid()} openDetail={(e, p) => this.openDetail(p)} />
+        <Priority priority={priority} key={priority.id} openDetail={(e, p) => this.openDetail(p)} />
       );
     });
   }
@@ -64,11 +67,10 @@ class App extends Component {
   }
 
   addToPriorites(p) {
-    const newListOfPriorites = [...this.state.items, p];
-    // console.log(newListOfPriorites);
+    const newPriorities = {...this.state.items, [p.id]: p}
     this.setState(
-      { items: newListOfPriorites, showForm: false },
-      this.saveToStorage(newListOfPriorites)
+      { items: newPriorities, showForm: false },
+      this.saveToStorage(newPriorities)
     );
   }
 
@@ -84,6 +86,12 @@ class App extends Component {
           <Detail
             priority={this.state.selected}
             closeModal={() => this.setState({ showDetail: false, selected: null })}
+            editState={this.state.editDetail}
+            editOn={() => {this.setState({editDetail: true})}}
+            editInfo={(e) => this.setState({
+              items: {...this.state.items, [this.state.selected]: {...this.state.items[this.state.selected], details: e.target.value}}
+            }) }
+            detailInfo={this.state.selected.details}
           />
         )}
         <TransitionGroup>

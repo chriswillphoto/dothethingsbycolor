@@ -8,11 +8,27 @@ const divstyle = {
   top: "0"
 }
 
-const Detail = ({priority, closeModal}) => {
+const DetailInfo = ({toEditor}) => {
+  return(
+    <p onClick={toEditor} >Test</p>
+  )
+}
+
+const Editor = (props) => {
+  return(
+    <div>
+    <textarea onChange={(e) => props.editInfo(e)} value={props.details}></textarea>
+    </div>
+  )
+}
+
+
+const Detail = (props) => {
   return(
     <div style={divstyle} className="detail-modal">
-      <button class="close-detail" onClick={() => {closeModal()}}>X</button>
-      <h1>{priority.name}</h1>
+      <button className="close-detail" onClick={() => {props.closeModal()}}>X</button>
+      <h1>{props.priority.name}</h1>
+      {!props.editState ? <DetailInfo toEditor={props.editOn}/> : <Editor details={props.detailInfo} editInfo={(e) => props.editInfo(e)}  />}
     </div>
   )
 } 

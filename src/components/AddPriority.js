@@ -1,12 +1,15 @@
 import React from "react";
+import uniqid from 'uniqid'
 import './AddPriority.css'
 
 const AddPriority = props => {
   const addNewPriority = e => {
     e.preventDefault();
     const newPriority = {
+      id: uniqid(),
       name: e.target.elements[0].value,
-      level: parseInt(e.target.elements[1].value, 10)
+      level: parseInt(e.target.elements[1].value, 10),
+      details: "Click here to edit"
     };
     console.log(e.target.elements)
     props.addToPriorities(newPriority);
