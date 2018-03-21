@@ -79,18 +79,19 @@ class App extends Component {
   }
 
   render() {
+    const key = this.state.selected
     return (
       <div className="priorities-container">
         {this.listPriorities()}
         {this.state.showDetail && (
           <Detail
-            priority={this.state.selected}
+            priority={this.state.items[key]}
             closeModal={() => this.setState({ showDetail: false, selected: null })}
             editState={this.state.editDetail}
-            editOn={() => {this.setState({editDetail: true})}}
+            editOn={() => {this.setState({editDetail: !this.state.editDetail})}}
             editInfo={(e) => this.setState({
               items: {...this.state.items, [this.state.selected]: {...this.state.items[this.state.selected], details: e.target.value}}
-            }), this.saveToStorage() }
+            }, this.saveToStorage( this.state.items ))}
             detailInfo={this.state.items[this.state.selected].details}
           />
         )}
