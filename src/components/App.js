@@ -90,8 +90,8 @@ class App extends Component {
             editOn={() => {this.setState({editDetail: true})}}
             editInfo={(e) => this.setState({
               items: {...this.state.items, [this.state.selected]: {...this.state.items[this.state.selected], details: e.target.value}}
-            }) }
-            detailInfo={this.state.selected.details}
+            }), this.saveToStorage() }
+            detailInfo={this.state.items[this.state.selected].details}
           />
         )}
         <TransitionGroup>

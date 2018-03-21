@@ -8,9 +8,9 @@ const divstyle = {
   top: "0"
 }
 
-const DetailInfo = ({toEditor}) => {
+const DetailInfo = (props) => {
   return(
-    <p onClick={toEditor} >Test</p>
+    <p onClick={props.toEditor} >{props.details}</p>
   )
 }
 
@@ -28,7 +28,7 @@ const Detail = (props) => {
     <div style={divstyle} className="detail-modal">
       <button className="close-detail" onClick={() => {props.closeModal()}}>X</button>
       <h1>{props.priority.name}</h1>
-      {!props.editState ? <DetailInfo toEditor={props.editOn}/> : <Editor details={props.detailInfo} editInfo={(e) => props.editInfo(e)}  />}
+      {!props.editState ? <DetailInfo details={props.detailInfo}  toEditor={props.editOn}/> : <Editor details={props.detailInfo} editInfo={(e) => props.editInfo(e)}  />}
     </div>
   )
 } 
