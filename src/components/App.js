@@ -55,7 +55,7 @@ class App extends Component {
   }
 
   listPriorities() {
-    return Object.keys(this.state.items).map((key) => { return this.state.items[key]  }).sort(compare).map(priority => {
+    return Object.values(this.state.items).sort(compare).map(priority => {
       return (
         <Priority priority={priority} key={priority.id} openDetail={(e, p) => this.openDetail(p)} />
       );
